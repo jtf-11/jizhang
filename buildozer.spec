@@ -5,7 +5,7 @@ package.domain = org.example
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json
 version = 1.3
-requirements = python3,kivy,pyjnius==1.6.1
+requirements = python3,kivy
 orientation = portrait
 fullscreen = 0
 android.api = 33
@@ -15,7 +15,7 @@ android.ndk = 25b
 android.archs = arm64-v8a
 android.accept_sdk_license = True
 android.allow_backup = True
-p4a.branch = master
+p4a.branch = develop
 
 [buildozer]
 log_level = 2
