@@ -3,7 +3,7 @@ title = 简易记账
 package.name = jizhang
 package.domain = org.example
 source.dir = .
-source.include_exts = py,png,jpg,kv,atlas,json
+source.include_exts = py,png,jpg,kv,atlas
 version = 1.3
 requirements = python3,kivy==2.2.1
 orientation = portrait
@@ -15,7 +15,8 @@ android.ndk = 25b
 android.archs = arm64-v8a
 android.accept_sdk_license = True
 android.allow_backup = True
-p4a.branch = v2023.09.25
+p4a.branch = v2023.09.16
+
 
 [buildozer]
 log_level = 2
