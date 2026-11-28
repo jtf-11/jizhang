@@ -16,6 +16,7 @@ android.archs = arm64-v8a
 android.accept_sdk_license = True
 android.allow_backup = True
 p4a.branch = v2024.03.12
+p4a.ignore_recipes = libthorvg
 
 [buildozer]
 log_level = 2
