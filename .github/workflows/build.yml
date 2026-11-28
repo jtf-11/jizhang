@@ -41,6 +41,23 @@ jobs:
         run: |
           export ANDROID_HOME="$HOME/.buildozer/android/platform/android-sdk"
           export ANDROID_SDK_ROOT="$ANDROID_HOME"
+          export GIT_TERMINAL_PROMPT=0
+          export GIT_HTTP_LOW_SPEED_LIMIT=1000
+          export GIT_HTTP_LOW_SPEED_TIME=30
+
+          # 后台监控：p4a 目录一出现就删除 libthorvg recipe，绕过其 IndexError bug
+          (
+            for i in $(seq 1 900); do
+              P4A_DIR="$HOME/.buildozer/android/platform/python-for-android"
+              if [ -d "$P4A_DIR/pythonforandroid/recipes/libthorvg" ]; then
+                rm -rf "$P4A_DIR/pythonforandroid/recipes/libthorvg"
+                echo ">>> 已删除 libthorvg recipe"
+                break
+              fi
+              sleep 1
+            done
+          ) &
+
           buildozer android debug 2>&1 | tee buildozer.log
           exit ${PIPESTATUS[0]}
 
@@ -50,8 +67,10 @@ jobs:
         with:
           name: buildozer-log
           path: buildozer.log
+          if-no-files-found: warn
 
       - name: Upload APK
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: jizhang-apk
